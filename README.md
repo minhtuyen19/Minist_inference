@@ -7,17 +7,17 @@
 + Number of kernels: 32
 + Weights_0 (weights_0.txt)
 + Bias_0 (bias_0.txt)
-Output: (((n-f+2p)/s)+1)x(((n-f+2p)/s)+1) = 26x26x32
-Amount of weights in the first layer: W_0 = {[(3x3)+1]x32} = 320 and bias = 32.
++ Output: (((n-f+2p)/s)+1)x(((n-f+2p)/s)+1) = 26x26x32
++ Amount of weights in the first layer: W_0 = {[(3x3)+1]x32} = 320 and bias = 32.
 ## Conv2d_1 (The second layer):
 + Kernel_size: (3x3)
 + Number of kernels: 32
 + Weights_1 (weights_1.txt)
 + Bias_1 (bias_1.txt)
-Output: 24x24x32
-Amount of weights in the second layer: W_1 = {[(3x3x32)+1]*32} and bias = 32.
++ Output: 24x24x32
++ Amount of weights in the second layer: W_1 = {[(3x3x32)+1]*32} and bias = 32.
 ## Maxpool2d:
-Output: (((n-pool_size+ 2p)/s)+1)x(((n-pool_size+ 2p)/s)+1) = 12x12x32
++ Output: (((n-pool_size+ 2p)/s)+1)x(((n-pool_size+ 2p)/s)+1) = 12x12x32
 ## Dense_128:
 + Weights_128 (dense_128.txt)
 + Bias_128 (dense_bias_128.txt)
