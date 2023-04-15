@@ -2,7 +2,7 @@
 ## First
 ## Input: input.txt ( number 7), so_2.txt (number 2) --> Size: (28x28) from Mnist dataset and don't preprocess.
 ![image](https://user-images.githubusercontent.com/121759873/232181284-54ddcbdb-f3af-4e5c-8469-d243ecc3620a.png)
-- Conv2d_0 (The first layer):
+## Conv2d_0 (The first layer):
 + Kernel_size: (3x3) 
 + Number of kernels: 32
 + Weights_0 (weights_0.txt)
