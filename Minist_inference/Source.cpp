@@ -67,8 +67,7 @@ void softmax(float* input, int n_input, float* output) {
 }
 void conv2d(float* input, float* w, int row, int col, int frow, int fcol, int channel_inputs,
 	int kernel_size, float* conv_results, float* bias) {
-
-	//Cap vung nho dong cho kernel_out(4dimensions)
+	//Allocate memory for kernel_out dynamically
 	float**** kernel_out = (float****)malloc(frow * sizeof(float***));
 	for (int i = 0; i < frow; i++) {
 		kernel_out[i] = (float***)malloc(fcol * sizeof(float**));
@@ -79,14 +78,14 @@ void conv2d(float* input, float* w, int row, int col, int frow, int fcol, int ch
 			}
 		}
 	}
-	int s = 0; 
+	int s = 0;
 	for (int i = 0; i < frow; i++) {
 		for (int j = 0; j < fcol; j++) {
 			for (int k = 0; k < channel_inputs; k++) {
 				for (int l = 0; l < kernel_size; l++)
 				{
 					kernel_out[i][j][k][l] = w[s++];
-				} 
+				}
 			}
 		}
 	}
@@ -108,7 +107,7 @@ void conv2d(float* input, float* w, int row, int col, int frow, int fcol, int ch
 	//Free memory for kernel_out
 	for (int i = 0; i < frow; i++) {
 		for (int j = 0; j < fcol; j++) {
-			for (int k = 0; k < channel_inputs; k++) { 
+			for (int k = 0; k < channel_inputs; k++) {
 				free(kernel_out[i][j][k]);
 			}
 			free(kernel_out[i][j]);
@@ -155,7 +154,7 @@ void dense(float* input, int n_input, int n_w, float* weights, float* bias, floa
 			dot[i] += input[j] * weights[j * n_w + i];
 		}
 		output[i] = dot[i] + bias[i];
-	} 
+	}
 
 	//for (int i = 0; i < n_w; i++) {
 	//	printf("output[%i] = %f \n", i, output[i]);
@@ -169,7 +168,7 @@ void main() {
 	int n_input;
 	readfile("so_2.txt", input, n_input);
 	//xuat(input, n_input);
-	//===========================conv2d_0=============================
+	//===========================conv2d_0============================
 	float w_0[288];
 	float bias_0[32];
 	int nw_0;
@@ -182,7 +181,8 @@ void main() {
 	conv2d(input, w_0, 28, 28, 3, 3, 1, 32, out_0, bias_0);
 	sigmoid(out_0, l_0, out_sig_0);
 	//===========================conv2d_1=============================
-	float w_1[9216];
+	//float w_1[9216];
+	float* w_1 = (float*)malloc(9216 * sizeof(float));
 	float bias_1[32];
 	int nw_1;
 	int nb_1;
@@ -223,5 +223,6 @@ void main() {
 	dense(out_sig_128, l_dense_10, l_w_10, w_10, bias_10, out_dense_10);
 	softmax(out_dense_10, 10, out_softmax_10);
 	xuat(out_softmax_10, 10);
+	free(w_1);
 	free(w_128);
 }
