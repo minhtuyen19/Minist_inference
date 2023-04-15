@@ -21,7 +21,7 @@ Output: (((n-pool_size+ 2p)/s)+1)x(((n-pool_size+ 2p)/s)+1) = 12x12x32
 ## Dense_128:
 + Weights_128 (dense_128.txt)
 + Bias_128 (dense_bias_128.txt)
-+ W_128 = ((current layer c x previous layer p) + 1xc) = ((128*4608)+1*128)= 589952
++ W_128 = ((current layer c x previous layer p) + 1xc) = ((128 x 4608)+1 x 128)= 589952
 + Output: 128
 ## Dense_10:
 + Weights_10 (dense_10.txt)
